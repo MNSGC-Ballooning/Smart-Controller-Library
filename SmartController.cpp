@@ -76,7 +76,7 @@ Xbee->print(TempRequests[SmartUnit-1]);
 /*********Get Data Function*************/
 String SmartController::GetData(char id) {  //in unlikely event that temp send takes more than 2 seconds, break
 
-while(true && millis()-DataTimer<=2000){
+while(true && millis()-DataTimer<=500){
 
     if(Xbee->available()>0){
     Data=Xbee->read();
