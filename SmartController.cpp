@@ -6,7 +6,7 @@
 
 
 //Constructor
-SmartController::SmartController(int SmartNumber, HardwareSerial &print){
+SmartController::SmartController(int SmartNumber, HardwareSerial &print, float TimeAllowed){
   
 //For setting up Xbee
 Xbee = &print;
@@ -15,7 +15,7 @@ newTempChar=true;
 CutTimer=0;
 DataTimer=0;
 SmartCount=SmartNumber; //Number of smart units attached
-
+TimeAllotted=TimeAllowed;
 
 
 /************************************/
@@ -76,7 +76,7 @@ Xbee->print(TempRequests[SmartUnit-1]);
 /*********Get Data Function*************/
 String SmartController::GetData(char id) {  //in unlikely event that temp send takes more than 2 seconds, break
 
-while(true && millis()-DataTimer<=500){
+while(true && millis()-DataTimer<=TimeAllotted){
 
     if(Xbee->available()>0){
     Data=Xbee->read();

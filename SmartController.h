@@ -31,11 +31,12 @@ public:
     void RequestTemp(int SmartUnit); //Call in main
     void Cut(int SmartUnit,bool Condition); //Call with Condition=true to cut
     //constructor
-    SmartController(int SmartNumber, HardwareSerial &print);
+    SmartController(int SmartNumber, HardwareSerial &print, float TimeAllowed);
     //ONLY NEED TO USE Constructor, Response(), RequestTemp(), and Cut() in main
 private:
     int SmartCount; //Number of attached smarts
     HardwareSerial* Xbee; //Xbee serial
+    float TimeAllotted;
 
 
 };
